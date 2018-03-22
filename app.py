@@ -61,6 +61,7 @@ class Course(db.Model):
 		
 #OFFICE HOURS TABLE
 class Office(db.Model):
+	office_id = db.Column(db.Integer, primary_key = True)
 	email = db.Column(db.String(20))
 	dest_ID = db.Column(db.String(20))
 	day = db.Column(db.String(20))
@@ -73,7 +74,6 @@ class Office(db.Model):
 		self.day = day
 		self.start = start
 		self.end = end
-
 
 
 #---------------------     		SCHEMA     		-----------------------#	
