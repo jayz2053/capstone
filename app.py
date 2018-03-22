@@ -53,7 +53,7 @@ class Course(db.Model):
 	course_id = db.Column(db.String(15), primary_key=True)
 	description = db.Column(db.String(100))
 	
-	def __init__(name, course_id, desc):
+	def __init__(self, name, course_id, desc):
 		self.name=name
 		self.course_id = course_id
 		self.desc = desc
@@ -66,6 +66,13 @@ class Office(db.Model):
 	day = db.Column(db.String(20))
 	start = db.Column(db.String(20))
 	end = db.Column(db.String(20))
+	
+	def __init__(self, email, dest_ID, day, start, end):
+		self.email = email
+		self.dest_ID = dest_ID
+		self.day = day
+		self.start = start
+		self.end = end
 
 
 
