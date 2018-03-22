@@ -18,7 +18,7 @@ class Teaches(db.Model):
 	time = db.Column(db.String(20))
 	email = db.Column(db.String(25))
 	dest_ID = db.Column(db.String(10))
-	
+
 	def __init__(self, crn, days, time, email, dest_ID):
 		self.crn = crn
 		self.days = days
@@ -225,3 +225,5 @@ def add_office():
 	
 	return jsonify(new_course)
 	
+if __name__ == '__main__':
+	app.run(debug=True, port = 8080, host ='188.166.97.39')
