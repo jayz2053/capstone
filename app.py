@@ -111,19 +111,19 @@ class OfficeSchema(ma.Schema):
 #-----------------     		INIT SCHEMA     		-------------------#	
 
 professor_schema = ProfessorSchema()
-professor_schema = ProfessorSchema(many=true)
+professor_schema = ProfessorSchema(many=True)
 		
 teaches_schema = TeachesSchema()
-teaches_schema = TeachesSchema(many=true)
+teaches_schema = TeachesSchema(many=True)
 
 office_schema = OfficeSchema()
-office_schema = OfficeSchema(many=true)
+office_schema = OfficeSchema(many=True)
 
 course_schema = CourseSchema()
-course_schema = CourseSchema(many=true)
+course_schema = CourseSchema(many=True)
 
 destination_schema = DestinationSchema()
-destination_schema = DestinationSchema(many=true)
+destination_schema = DestinationSchema(many=True)
 
 #---------------------     	GET	ROUTES     		-----------------------#	
 
