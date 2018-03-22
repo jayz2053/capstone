@@ -17,14 +17,12 @@ class Teaches(db.Model):
 	days = db.Column(db.String(10))
 	time = db.Column(db.String(20))
 	email = db.Column(db.String(25))
-	courseName = db.Column(db.String(20))
 	dest_ID = db.Column(db.String(10))
 	
-	def __init__(self, crn, days, time, email, courseName, dest_ID):
+	def __init__(self, crn, days, time, email, dest_ID):
 		self.crn = crn
 		self.days = days
 		self.email = email
-		self.courseName = courseName
 		self.dest_ID = dest_ID
 	
 #PROFESSOR TABLE
@@ -77,7 +75,7 @@ class Office(db.Model):
 class TeachesSchema(ma.Schema):
 	class Meta:
 		#Fields to expose
-		fields = ('crn')
+		fields = ('crn', 'days', 'time','email','destination')
 				
 #PROFESSOR SCHEMA
 class ProfessorSchema(ma.Schema):
@@ -89,13 +87,13 @@ class ProfessorSchema(ma.Schema):
 class DestinationSchema(ma.Schema):
 	class Meta:
 		#Fields to expose
-		fields = ('category', 'dest_ID')
+		fields = ('category', 'dest_ID', 'building')
 
 #COURSE SCHEMA		
 class CourseSchema(ma.Schema):
 	class Meta:
 		#Fields to expose
-		fields = ('dest_ID', 'days', 'times')
+		fields = ('name', 'course_id', 'description')
 
 #OFFICE HOURS SCHEMA
 class OfficeSchema(ma.Schema):
@@ -120,7 +118,7 @@ course_schema = CourseSchema(many=true)
 destination_schema = DestinationSchema()
 destination_schema = DestinationSchema(many=true)
 
-#---------------------     		ROUTES     		-----------------------#	
+#---------------------     	GET	ROUTES     		-----------------------#	
 
 @app.route("/teaches", methods=["GET"])
 def get_teaches():
@@ -151,3 +149,72 @@ def get_office():
 	all_office = Office.query.all()
 	result = office_schema.dump(all_office)
 	return jsonify(result.data)
+
+#------------------     	POST ROUTES    		-----------------------#	
+
+@app.route("/teaches", methods=["POST"])
+def add_teaches():
+	crn = request.json['crn']	
+	days = request.json['days']
+	time = request.json['time']
+	email = request.json['email']
+	dest_ID = request.json['dest_ID']
+	
+	new_teaches = Teaches(crn, days, time, email, dest_ID)
+	
+	db.session.add(new_teaches)
+	db.session.commit()
+	
+	return jsonify(new_teaches)
+	
+@app.route("/professor", methods=["POST"])
+def add_professor():
+	email = request.json['email']	
+	name = request.json['name']
+	
+	new_professor = Professor(email, name)
+	
+	db.session.add(new_professor)
+	db.session.commit()
+	
+	return jsonify(new_professor) 
+	
+@app.route("/destination", methods=["POST"])
+def add_destination():
+	category = request.json['category']	
+	dest_ID = request.json['dest_ID']
+	building = request.json['building']
+	
+	new_dest = Destination(category, dest_ID, building)
+	
+	db.session.add(new_dest)
+	db.commit()
+	
+	return jsonify(new_dest)
+	
+@app.route("/course", methods=["POST"])
+def add_course():
+	name = request.json['name']	
+	course_id = request.json['course_id']
+	description = request.json['description']
+	
+	new_course = Course(name, course_id, description)
+	
+	db.session.add(new_course)
+	db.commit()
+	
+	return jsonify(new_course)
+	
+@app.route("/office", methods=["POST"])
+def add_office():
+	email = request.json['email']
+	dest_ID = request.json['dest_ID']
+	day = request.json['day']
+	start = request.json['start']
+	end = request.json['end']
+	
+	db.session.add(new_course)
+	db.commit()
+	
+	return jsonify(new_course)
+	
