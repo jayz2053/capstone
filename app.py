@@ -9,99 +9,118 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sql:///' + os.path.join(basedir, 'crud.
 db = SQLAlchemy(app)
 ma= Marshmallow(app)
 
+#---------------------     		TABLES     		-----------------------#
+
+#TEACHES TABLE
 class Teaches(db.Model):
-	crn = db.Column
-	destination = db.Column
-	email = db.Column
-	courseName = db.Column
-	dest_ID = db.Column
+	crn = db.Column(db.String(12), primary_key=True)
+	days = db.Column(db.String(10))
+	time = db.Column(db.String(20))
+	email = db.Column(db.String(25))
+	courseName = db.Column(db.String(20))
+	dest_ID = db.Column(db.String(10))
 	
-	def __init__(self, crn, destination, email, courseName, dest_ID):
+	def __init__(self, crn, days, time, email, courseName, dest_ID):
 		self.crn = crn
-		self.destination = destination
+		self.days = days
 		self.email = email
 		self.courseName = courseName
 		self.dest_ID = dest_ID
 	
-
+#PROFESSOR TABLE
 class Professor(db.Model):
-	email = db.Column
-	name = db.Column
+	email = db.Column(db.String(25), primary_key=True)
+	name = db.Column(db.String(25))
 	
 	def __init__(self, email, name):
 		self.email = email
 		self.name = name
 	
 	
-	
+#DESTINATION TABLE
 class Destination(db.Model):
-	category = db.Column
-	dest_ID = db.Column
+	category = db.Column(db.String(20))
+	dest_ID = db.Column(db.Integer, primary_key=True)
+	building = db.Column(db.String(5))
 	
-	def __init__(self, category, dest_ID)
+	def __init__(self, category, dest_ID, building):
 		self.category = category
 		self.dest_ID = dest_ID
+		self.building = building
 	
 
-
+#COURSE TABLE
 class Course(db.Model):
-	days = db.Column
-	times = db.Column
-	email = db.Column
-	dest_ID = db.Column
+	name = db.Column(db.String(20), unique=True)
+	course_id = db.Column(db.String(15), primary_key=True)
+	description = db.Column(db.String(100))
 	
-	def __init__(self, days, times, email dest_ID):
-		self.days = days
-		self.times = times
-		self.email = email
-		self.dest_ID = dest_ID 
-
+	def __init__(name, course_id, desc):
+		self.name=name
+		self.course_id = course_id
+		self.desc = desc
+		
+		
+#OFFICE HOURS TABLE
 class Office(db.Model):
-	email = db.Column
-	dest_ID = db.Column
-	day = db.Column
-	start = db.Column
-	end = db.Column
+	email = db.Column(db.String(20))
+	dest_ID = db.Column(db.String(20))
+	day = db.Column(db.String(20))
+	start = db.Column(db.String(20))
+	end = db.Column(db.String(20))
+
+
+
+#---------------------     		SCHEMA     		-----------------------#	
 	
+#TEACHER SCHEMA
 class TeachesSchema(ma.Schema):
 	class Meta:
 		#Fields to expose
 		fields = ('crn')
-		
-teaches_schema = TeachesSchema()
-teaches_schema = TeachesSchema(many=true)
-		
+				
+#PROFESSOR SCHEMA
 class ProfessorSchema(ma.Schema):
 	class Meta:
 		#Fields to expose
 		fields = ('name', 'email')
 		
-professor_schema = ProfessorSchema()
-professor_schema = ProfessorSchema(many=true)
-		
+#DESTINATION SCHEMA
 class DestinationSchema(ma.Schema):
 	class Meta:
 		#Fields to expose
 		fields = ('category', 'dest_ID')
-		
-destination_schema = DestinationSchema()
-destination_schema = DestinationSchema(many=true)		
-		
+
+#COURSE SCHEMA		
 class CourseSchema(ma.Schema):
 	class Meta:
 		#Fields to expose
 		fields = ('dest_ID', 'days', 'times')
-		
-course_schema = CourseSchema()
-course_schema = CourseSchema(many=true)
-		
+
+#OFFICE HOURS SCHEMA
 class OfficeSchema(ma.Schema):
 	class Meta:
 		#Fields to expose
 		fields = ('dest_ID', 'email', 'day', 'start', 'end')
+
+#-----------------     		INIT SCHEMA     		-------------------#	
+
+professor_schema = ProfessorSchema()
+professor_schema = ProfessorSchema(many=true)
 		
+teaches_schema = TeachesSchema()
+teaches_schema = TeachesSchema(many=true)
+
 office_schema = OfficeSchema()
 office_schema = OfficeSchema(many=true)
+
+course_schema = CourseSchema()
+course_schema = CourseSchema(many=true)
+
+destination_schema = DestinationSchema()
+destination_schema = DestinationSchema(many=true)
+
+#---------------------     		ROUTES     		-----------------------#	
 
 @app.route("/teaches", methods=["GET"])
 def get_teaches():
