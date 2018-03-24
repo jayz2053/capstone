@@ -48,7 +48,7 @@ def add_professor():
 	
 	payload = {"name" : name, "email": email}
 	
-	r = requests.post('http://188.166.97.39:8080/professor', payload)
+	r = requests.post('http://188.166.97.39:8080/professor',json=payload)
 
 def add_office():
 	email = input("Enter an email: ")
