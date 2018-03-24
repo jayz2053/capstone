@@ -179,6 +179,8 @@ def add_professor():
 	email = request.json['email']	
 	name = request.json['name']
 	
+	print(name + email)
+	
 	new_professor = Professor(email, name)
 	
 	db.session.add(new_professor)
