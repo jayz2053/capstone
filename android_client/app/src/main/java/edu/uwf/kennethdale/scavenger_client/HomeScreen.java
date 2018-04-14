@@ -17,12 +17,12 @@ public class HomeScreen extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                goToNextActivity();
+                goToQRScanner();
             }
         });
     }
 
-    private void goToNextActivity(){
+    private void goToQRScanner(){
         Intent intent = new Intent(this, QRScanner.class);
         startActivity(intent);
     }

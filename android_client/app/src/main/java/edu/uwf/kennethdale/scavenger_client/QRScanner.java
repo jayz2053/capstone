@@ -1,12 +1,8 @@
 package edu.uwf.kennethdale.scavenger_client;
 
-import android.Manifest;
-import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
@@ -14,53 +10,13 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.vision.CameraSource;
-import com.google.android.gms.vision.Detector;
-import com.google.android.gms.vision.barcode.Barcode;
-import com.google.android.gms.vision.barcode.BarcodeDetector;
 import com.google.zxing.Result;
-
-import java.io.IOException;
-
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 import static android.Manifest.permission.CAMERA;
 
 public class QRScanner extends AppCompatActivity implements ZXingScannerView.ResultHandler {
-
-    ////////////////////////////////////////////////////////////////////////////////////////////
-    /*SurfaceView camera;
-    TextView result;
-    BarcodeDetector barcodeDetector;
-    CameraSource cameraSource;
-    final int RequestCameraPermissionID = 1001;
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        switch (requestCode) {
-            case RequestCameraPermissionID: {
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                        return;
-                    }
-                    try {
-                        cameraSource.start(camera.getHolder());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-            break;
-        }
-    }*/
-    ////////////////////////////////////////////////////////////////////////////////////////////
     private static final int REQUEST_CAMERA = 1;
     private ZXingScannerView scannerView;
 
@@ -103,46 +59,8 @@ public class QRScanner extends AppCompatActivity implements ZXingScannerView.Res
             }
         }
 
-        ///////////////////////////////////////////////////////////////////////////////////////
-        /*camera = (SurfaceView) findViewById(R.id.cameraLens);
-        result = (TextView) findViewById(R.id.qrResult);
-
-        barcodeDetector = new BarcodeDetector.Builder(this)
-                .setBarcodeFormats(Barcode.QR_CODE).build();
-
-        cameraSource = new CameraSource.Builder(this, barcodeDetector)
-                .setRequestedPreviewSize(640, 480).build();
-
-        camera.getHolder().addCallback(new SurfaceHolder.Callback() {
-            @Override
-            public void surfaceCreated(SurfaceHolder holder) {
-                if(ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
-                    ActivityCompat.requestPermissions(QRScanner.this,
-                            new String[]{Manifest.permission.CAMERA},RequestCameraPermissionID);
-                }
-                try {
-                    cameraSource.start(camera.getHolder());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
-            }
-
-            @Override
-            public void surfaceDestroyed(SurfaceHolder holder) {
-                cameraSource.stop();
-            }
-        });*/
     }
 
-    /*barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
-
-    }*/
-    //////////////////////////////////////////////////////////////////////////////////////////
     private boolean checkPermission() {
         return ContextCompat.checkSelfPermission(QRScanner.this, CAMERA) == PackageManager.PERMISSION_GRANTED;
     }

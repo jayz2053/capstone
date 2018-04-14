@@ -7,17 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".HomeScreen">
 
-    <Button
-        android:id="@+id/qr_button"
-        style="@style/button"
-        android:layout_width="211dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="62dp"
-        android:text="Scan QR Code"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <ImageView
         android:id="@+id/smallLogo"
         android:layout_width="73dp"
@@ -27,4 +16,34 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/uwf_logo" />
+
+    <!-- Buttons 85dp apart -->
+    <Button
+        android:id="@+id/campusMap_button"
+        style="@style/button"
+        android:text="Campus Map"
+        tools:layout_editor_absoluteX="87dp"
+        tools:layout_editor_absoluteY="112dp" />
+
+    <Button
+        android:id="@+id/qr_button"
+        style="@style/button"
+        android:layout_marginBottom="272dp"
+        android:text="Scan QR Code"
+        tools:layout_editor_absoluteX="87dp"
+        tools:layout_editor_absoluteY="197dp" />
+
+    <Button
+        android:id="@+id/searchClass_button"
+        style="@style/button"
+        android:text="Search Class"
+        tools:layout_editor_absoluteX="87dp"
+        tools:layout_editor_absoluteY="282dp" />
+
+    <Button
+        android:id="@+id/button4"
+        style="@style/button"
+        android:text="Search Professor"
+        tools:layout_editor_absoluteX="87dp"
+        tools:layout_editor_absoluteY="367dp" />
 </android.support.constraint.ConstraintLayout>
