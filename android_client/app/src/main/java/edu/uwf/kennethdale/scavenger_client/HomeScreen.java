@@ -13,11 +13,27 @@ public class HomeScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_screen);
 
-        Button button = findViewById(R.id.qr_button);
-        button.setOnClickListener(new View.OnClickListener(){
+        Button qr_button = findViewById(R.id.qr_button);
+        qr_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 goToQRScanner();
+            }
+        });
+
+        Button campusMap_button = findViewById(R.id.campusMap_button);
+        campusMap_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                goToCampusMap();
+            }
+        });
+
+        Button searchProfessor_button = findViewById(R.id.searchProfessor_button);
+        searchProfessor_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                goToSearchProfessor();
             }
         });
     }
@@ -26,4 +42,15 @@ public class HomeScreen extends AppCompatActivity {
         Intent intent = new Intent(this, QRScanner.class);
         startActivity(intent);
     }
+
+    private void goToCampusMap(){
+        Intent intent = new Intent(HomeScreen.this, CampusMap.class);
+        startActivity(intent);
+    }
+
+    private void goToSearchProfessor(){
+        Intent intent = new Intent(HomeScreen.this, SearchProfessor.class);
+        startActivity(intent);
+    }
+
 }
