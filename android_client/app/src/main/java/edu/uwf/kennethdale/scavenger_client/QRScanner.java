@@ -23,7 +23,14 @@ public class QRScanner extends AppCompatActivity implements ZXingScannerView.Res
     @Override
     public void handleResult(Result result) {
         final String scanResult = result.getText();
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        Intent intent = new Intent(this, QRResult.class);
+        intent.putExtra("SCAN_RESULT", scanResult);
+        startActivity(intent);
+
+        //LEAVING THIS FOR NOW IN CASE WE DECIDE ON A POPUP
+
+        /*AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Scan Result");
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
@@ -40,7 +47,7 @@ public class QRScanner extends AppCompatActivity implements ZXingScannerView.Res
         });
         builder.setMessage(scanResult);
         AlertDialog alert = builder.create();
-        alert.show();
+        alert.show();*/
     }
 
     @Override
