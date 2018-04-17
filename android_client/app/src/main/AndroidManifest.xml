@@ -31,7 +31,7 @@
             android:value="barcode" />
 
         <activity android:name=".SearchProfessor" />
-        <activity android:name=".QRResult"></activity>
+        <activity android:name=".QRResult" />
     </application>
 
 </manifest>

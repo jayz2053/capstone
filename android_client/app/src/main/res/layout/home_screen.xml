@@ -23,7 +23,6 @@
     <Button
         android:id="@+id/campusMap_button"
         style="@style/button"
-
         android:layout_marginTop="167dp"
         android:text="Campus Map"
         app:layout_constraintBottom_toTopOf="@+id/qr_button"

@@ -32,8 +32,7 @@ public class HomeScreen extends AppCompatActivity {
         Button searchProfessor_button = findViewById(R.id.searchProfessor_button);
         searchProfessor_button.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v){
-                goToSearchProfessor();
+            public void onClick(View v){ goToSearchProfessor();
             }
         });
     }

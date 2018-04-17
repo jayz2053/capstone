@@ -34,8 +34,9 @@ public class Utility {
                 items.add(resp.getString(attribute));
             }
         } catch(JSONException e){
-
+            e.printStackTrace();
         }
+
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(thisContext, android.R.layout.simple_spinner_item, items);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);

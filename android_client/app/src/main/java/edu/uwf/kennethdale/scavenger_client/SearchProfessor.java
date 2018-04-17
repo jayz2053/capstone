@@ -1,5 +1,6 @@
 package edu.uwf.kennethdale.scavenger_client;
 
+import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,7 +26,7 @@ public class SearchProfessor extends AppCompatActivity implements AdapterView.On
 
         // Spinner element
         Spinner spinner = (Spinner) findViewById(R.id.professor_spinner);
-
+        spinner.getBackground().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         /* Spinner click listener */
         spinner.setOnItemSelectedListener(this);
 
