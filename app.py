@@ -138,6 +138,12 @@ def get_professor():
 	all_professor = Professor.query.all()
 	result = professor_schema.dump(all_professor)
 	return jsonify(result.data)
+
+@app.route("/professor/name", methods=["GET"])
+def get_prof_name():
+	prof_name = Professor.query.name()
+	result = professor_schema.dump(prof_name)
+	return jsonify(result.data)
 	
 @app.route("/destination", methods=["GET"])
 def get_destination():
@@ -149,6 +155,12 @@ def get_destination():
 def get_course():
 	all_course = Course.query.all()
 	result = course_schema.dump(all_course)
+	return jsonify(result.data)
+
+@app.route("/course/name", methods=["GET"])
+def get_course_name():
+	course_name = Course.query.name()
+	result = course_schema.dump(course_name)
 	return jsonify(result.data)
 	
 @app.route("/office", methods=["GET"])
