@@ -18,7 +18,7 @@ public class Utility {
 
         HttpGetRequest getRequest = new HttpGetRequest();
         try {
-            responseText = getRequest.execute("http://188.166.97.39:8080/" + route).get();
+            responseText = getRequest.execute("http://188.166.97.39/" + route).get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

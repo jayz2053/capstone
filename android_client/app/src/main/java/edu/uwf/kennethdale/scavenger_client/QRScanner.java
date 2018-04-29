@@ -27,27 +27,6 @@ public class QRScanner extends AppCompatActivity implements ZXingScannerView.Res
         Intent intent = new Intent(this, QRResult.class);
         intent.putExtra("SCAN_RESULT", scanResult);
         startActivity(intent);
-
-        //LEAVING THIS FOR NOW IN CASE WE DECIDE ON A POPUP
-
-        /*AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Scan Result");
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                scannerView.resumeCameraPreview(QRScanner.this);
-            }
-        });
-        builder.setNeutralButton("Visit", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(scanResult));
-                startActivity(intent);
-            }
-        });
-        builder.setMessage(scanResult);
-        AlertDialog alert = builder.create();
-        alert.show();*/
     }
 
     @Override

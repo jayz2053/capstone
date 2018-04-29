@@ -35,6 +35,13 @@ public class HomeScreen extends AppCompatActivity {
             public void onClick(View v){ goToSearchProfessor();
             }
         });
+
+        Button searchClass_button = findViewById(R.id.searchClass_button);
+        searchClass_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){ goToSearchClass();
+            }
+        });
     }
 
     private void goToQRScanner(){
@@ -49,6 +56,11 @@ public class HomeScreen extends AppCompatActivity {
 
     private void goToSearchProfessor(){
         Intent intent = new Intent(HomeScreen.this, SearchProfessor.class);
+        startActivity(intent);
+    }
+
+    private void goToSearchClass(){
+        Intent intent = new Intent(this, SearchClass.class);
         startActivity(intent);
     }
 

@@ -7,6 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
+
 public class QRResult extends AppCompatActivity {
 
     @Override
@@ -22,7 +29,34 @@ public class QRResult extends AppCompatActivity {
 
         temp = scanResult.split("/");
 
-        test.setText("Building:  4\n" + "Room number:  " + temp[4]);
+        String responseText = "";
+
+        HttpGetRequest getRequest = new HttpGetRequest();
+        try {
+            responseText = getRequest.execute("http://188.166.97.39/destination/" + temp[4]).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        String type = "", description = "", str = "";
+        try {
+            JSONArray array = new JSONArray(responseText);
+
+            for (int i = 0; i < array.length(); i++){
+                JSONObject resp = array.getJSONObject(i);
+                type = resp.getString("destType");
+                description = resp.getString("description");
+
+                str += ("Building:  4\n" + "Room number:  " + temp[4]
+                        + "\n" + type + "\n" + description);
+            }
+        } catch(JSONException e){
+            e.printStackTrace();
+        }
+
+        test.setText(str);
 
 
         Button searchProfessor_button = findViewById(R.id.homeScreen_button);
