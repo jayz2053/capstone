@@ -79,7 +79,7 @@ public class SearchClass extends AppCompatActivity implements AdapterView.OnItem
 
         HttpGetRequest getRequest1 = new HttpGetRequest();
         try {
-            responseText1 = getRequest1.execute("http://188.166.97.39/department/professor/" + deptNames.get(spinner.getSelectedItemPosition())).get();
+            responseText1 = getRequest1.execute("http://188.166.97.39/course/professor/" + deptNames.get(spinner.getSelectedItemPosition())).get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

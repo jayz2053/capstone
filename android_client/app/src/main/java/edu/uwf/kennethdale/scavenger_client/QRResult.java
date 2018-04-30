@@ -40,7 +40,7 @@ public class QRResult extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        String type = "", description = "", str = "";
+        String type, description, str = "";
         try {
             JSONArray array = new JSONArray(responseText);
 

@@ -54,4 +54,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
+    <TextView
+        android:id="@+id/textView5"
+        style="@style/textBox"
+        android:layout_width="228dp"
+        android:layout_height="222dp"
+        android:layout_marginTop="40dp"
+        android:includeFontPadding="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/professor_spinner" />
+
 </android.support.constraint.ConstraintLayout>
